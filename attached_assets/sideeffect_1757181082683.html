@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cancer Treatment Side Effect Manager</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Raleway:wght@400;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+    :root{
+      --bg1:#ffeef6; --bg2:#fff0f6; --accent:#ff6fa3; --muted:#6b6b6b; --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100vh;display:flex;flex-direction:column;
+      background: linear-gradient(135deg,var(--bg1) 0%, #fff 35%, var(--bg2) 100%);
+      color:#222;
+      font-family:'Quicksand', sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    header{padding:24px 20px;display:flex;align-items:center;gap:16px}
+    .logo{width:56px;height:56px;border-radius:50%;background:linear-gradient(180deg,var(--accent),#ffb6d6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;box-shadow:0 6px 18px rgba(255,111,163,0.18)}
+    .title{font-size:20px;font-weight:700;font-family:'Raleway', sans-serif;color:var(--accent)}
+    .subtitle{font-size:14px;color:var(--muted)}
+
+    main{flex:1;display:grid;grid-template-columns:1fr;gap:20px;padding:20px;align-items:start}
+
+    .card{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 6px 20px rgba(30,30,30,0.06)}
+    h2{margin:0 0 12px 0;font-family:'Raleway', sans-serif;color:var(--accent)}
+    h3,h4{font-family:'Raleway', sans-serif;color:#333}
+    p.lead{margin:0 0 12px;color:var(--muted);font-size:15px}
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .list{display:flex;flex-direction:column;gap:10px;font-size:14px}
+    .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,#fff3f8,#ffeef6);font-weight:600;border:1px solid rgba(0,0,0,0.03);color:var(--accent)}
+
+    .small{font-size:13px;color:var(--muted)}
+    footer{padding:14px 20px;text-align:center;color:var(--muted);font-size:13px}
+
+    .emergency{background:#fff4f6;border:1px solid rgba(255,111,163,0.12);padding:14px;border-radius:12px;font-size:14px}
+
+    ul.tips{padding-left:18px;margin:8px 0;font-size:14px}
+    .resources{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+    a.res-link{display:inline-block;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.05);text-decoration:none;color:var(--accent);font-weight:600;transition:0.2s}
+    a.res-link:hover{background:var(--bg1)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><i class="fa-solid fa-ribbon"></i></div>
+    <div>
+      <div class="title">Cancer Treatment Side Effect Manager</div>
+      <div class="subtitle">Practical advice and quick resources for cancer treatment side effects</div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="card">
+        <h2>Overview</h2>
+        <p class="lead">This page helps patients and caregivers understand common side effects from cancer treatments (chemotherapy, radiotherapy, immunotherapy, surgery and targeted therapies) and provides practical, evidence-based tips you can share with your care team.</p>
+
+        <div class="grid-2">
+          <div>
+            <h3>Common treatments</h3>
+            <div class="list">
+              <div><span class="pill">Chemotherapy</span> — nausea, fatigue, mouth sores, low blood counts, hair loss</div>
+              <div><span class="pill">Radiotherapy</span> — skin changes, tiredness, local hair loss</div>
+              <div><span class="pill">Immunotherapy</span> — immune-related inflammation (e.g., skin, gut, lungs)</div>
+              <div><span class="pill">Targeted therapy</span> — rash, blood pressure changes</div>
+              <div><span class="pill">Surgery</span> — pain, wound healing, mobility changes</div>
+            </div>
+          </div>
+
+          <div>
+            <h3>Key principles</h3>
+            <ul class="tips">
+              <li>Report new or worsening symptoms to your care team quickly.</li>
+              <li>Preventive measures (anti-nausea meds, mouth care, skin care) help—ask before symptoms start.</li>
+              <li>Keep a symptom diary to share with your doctor.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Practical tips by side effect</h2>
+
+        <h4>Nausea & vomiting</h4>
+        <p class="small">Take anti-nausea medicines as prescribed, try small bland meals, stay hydrated and avoid strong smells.</p>
+
+        <h4>Fatigue</h4>
+        <p class="small">Pace yourself, prioritise important tasks, consider light activity as tolerated and speak with your team about anemia or sleep problems.</p>
+
+        <h4>Mouth sores & dry mouth</h4>
+        <p class="small">Use gentle mouth rinses (salt/soda rinse), avoid alcohol-based mouthwash, maintain oral hygiene and see dental support if severe.</p>
+
+        <h4>Low blood counts (infection risk, bleeding)</h4>
+        <p class="small">Avoid crowds if neutropenic, watch for fever, report any bleeding, and follow instructions about vaccines and infection prevention.</p>
+
+        <h4>Skin changes</h4>
+        <p class="small">Use mild soap, moisturiser, gentle clothing; protect treated skin from sun and follow radiotherapy skin-care instructions from your team.</p>
+      </div>
+
+      <div class="card">
+        <h2>When to call your care team</h2>
+        <div class="emergency">
+          <p><strong>Call right away</strong> for: fever (over 100.4°F/38°C), uncontrolled bleeding, severe shortness of breath, severe pain not controlled by medication, sudden confusion or signs of severe infection.</p>
+        </div>
+        <p class="small">Keep your care team phone numbers and after-hours instructions handy so you can act fast.</p>
+      </div>
+
+      <div class="card">
+        <h2>Quick resources</h2>
+        <div class="resources">
+          <a class="res-link" href="https://www.cancer.org" target="_blank">American Cancer Society — Managing side effects</a>
+          <a class="res-link" href="https://www.cancer.gov" target="_blank">National Cancer Institute — Side effects</a>
+          <a class="res-link" href="https://www.nhs.uk" target="_blank">NHS — Radiotherapy & chemo advice</a>
+          <a class="res-link" href="https://www.cancerresearchuk.org" target="_blank">Cancer Research UK — Practical coping</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="small">This tool provides general advice. It does not replace professional medical care. Always follow instructions from your oncology team.</div>
+  </footer>
+</body>
+</html>

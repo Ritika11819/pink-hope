@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinkHope - Patient Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 50%, #f8bbd0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .ribbon-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .pink-ribbon {
+      position: absolute;
+      background: #e91e63;
+      opacity: 0.7;
+      animation: float 20s infinite linear;
+      z-index: -1;
+      box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
+    }
+
+    .ribbon-1 {
+      width: 120px;
+      height: 40px;
+      top: 15%;
+      left: 10%;
+      transform: rotate(-30deg);
+      animation-delay: 0s;
+      animation-duration: 25s;
+    }
+
+    .ribbon-2 {
+      width: 100px;
+      height: 35px;
+      top: 30%;
+      right: 15%;
+      transform: rotate(20deg);
+      animation-delay: 2s;
+      animation-duration: 20s;
+    }
+
+    .ribbon-3 {
+      width: 80px;
+      height: 30px;
+      bottom: 25%;
+      left: 20%;
+      transform: rotate(10deg);
+      animation-delay: 4s;
+      animation-duration: 22s;
+    }
+
+    .ribbon-4 {
+      width: 90px;
+      height: 32px;
+      bottom: 40%;
+      right: 25%;
+      transform: rotate(-15deg);
+      animation-delay: 1s;
+      animation-duration: 18s;
+    }
+
+    .ribbon-5 {
+      width: 70px;
+      height: 28px;
+      top: 20%;
+      right: 30%;
+      transform: rotate(5deg);
+      animation-delay: 3s;
+      animation-duration: 23s;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      border: 2px solid #f8bbd0;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    .corner-ribbon {
+      position: absolute;
+      top: -5px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+    }
+
+    .corner-ribbon::before,
+    .corner-ribbon::after {
+      content: '';
+      position: absolute;
+      background: #e91e63;
+    }
+
+    .corner-ribbon::before {
+      width: 120%;
+      height: 20px;
+      top: 20px;
+      right: -10%;
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+    }
+
+    .corner-ribbon::after {
+      content: 'Hope';
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      top: 22px;
+      right: 18px;
+      z-index: 1;
+      transform: rotate(45deg);
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .logo i {
+      font-size: 42px;
+      color: #e91e63;
+      background: #fce4ec;
+      padding: 20px;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.2);
+    }
+
+    h1 {
+      color: #d81b60;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .app-name {
+      color: #e91e63;
+      font-weight: 800;
+      font-size: 32px;
+      margin-bottom: 5px;
+      background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: #880e4f;
+      margin-bottom: 35px;
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+
+    form {
+      text-align: left;
+    }
+
+    .form-section {
+      margin-bottom: 25px;
+    }
+
+    .form-section h3 {
+      color: #d81b60;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #fce4ec;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #f48fb1;
+      font-size: 18px;
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: 2px solid #fce4ec;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s;
+      background: #fef9fb;
+    }
+
+    form input:focus, form select:focus, form textarea:focus {
+      border-color: #e91e63;
+      box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
+    }
+
+    .checkbox-group {
+      margin: 15px 0;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .checkbox-item input {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .conditional-field {
+      display: none;
+      margin-top: 10px;
+      margin-left: 25px;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #d81b60 0%, #880e4f 100%);
+      box-shadow: 0 7px 18px rgba(233, 30, 99, 0.5);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .login-link {
+      color: #880e4f;
+      font-size: 15px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .login-link a {
+      color: #e91e63;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .login-link a:hover {
+      color: #ad1457;
+      text-decoration: underline;
+    }
+
+    .support-text {
+      margin-top: 30px;
+      padding: 15px;
+      background: #fce4ec;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #880e4f;
+      line-height: 1.5;
+    }
+
+    .support-text a {
+      color: #e91e63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    .pink-hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .pink-heart {
+      position: absolute;
+      color: rgba(233, 30, 99, 0.2);
+      font-size: 24px;
+      animation: float 15s infinite linear;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+      }
+      
+      .app-name {
+        font-size: 28px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ribbon-bg">
+    <div class="pink-ribbon ribbon-1"></div>
+    <div class="pink-ribbon ribbon-2"></div>
+    <div class="pink-ribbon ribbon-3"></div>
+    <div class="pink-ribbon ribbon-4"></div>
+    <div class="pink-ribbon ribbon-5"></div>
+  </div>
+
+  <div class="pink-hearts">
+    <!-- Hearts will be added by JavaScript -->
+  </div>
+
+  <div class="container">
+    <div class="corner-ribbon"></div>
+    
+    <div class="logo">
+      <i class="fas fa-ribbon"></i>
+    </div>
+    
+    <h1>Patient <span class="app-name">Registration</span></h1>
+    <p class="subtitle">Join PinkHope to track and manage your treatment side effects</p>
+    
+    <form id="registrationForm">
+      <div class="form-section">
+        <h3>Personal Information</h3>
+        
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="fullName" placeholder="Full Name" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="Email Address" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="Password" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="fas fa-phone"></i>
+          <input type="tel" id="phone" placeholder="Phone Number (optional)">
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h3>Health Profile</h3>
+        
+        <div class="input-group">
+          <i class="fas fa-birthday-cake"></i>
+          <input type="number" id="age" placeholder="Age" min="1" max="120" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="fas fa-venus-mars"></i>
+          <select id="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="input-group">
+          <i class="fas fa-band-aid"></i>
+          <select id="cancerType" required>
+            <option value="" disabled selected>Select Cancer Type</option>
+            <option value="breast">Breast Cancer</option>
+            <option value="lung">Lung Cancer</option>
+            <option value="colon">Colon Cancer</option>
+            <option value="prostate">Prostate Cancer</option>
+            <option value="other">Other Cancer Type</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h3>Medical History</h3>
+        
+        <div class="checkbox-group">
+          <p>Select any past illnesses you've been diagnosed with:</p>
+          
+          <div class="checkbox-item">
+            <input type="checkbox" id="diabetes" name="pastIllnesses" value="diabetes">
+            <label for="diabetes">Diabetes</label>
+          </div>
+          
+          <div class="checkbox-item">
+            <input type="checkbox" id="hypertension" name="pastIllnesses" value="hypertension">
+            <label for="hypertension">Hypertension</label>
+          </div>
+          
+          <div class="checkbox-item">
+            <input type="checkbox" id="heartDisease" name="pastIllnesses" value="heartDisease">
+            <label for="heartDisease">Heart Disease</label>
+          </div>
+          
+          <div class="checkbox-item">
+            <input type="checkbox" id="kidneyDisease" name="pastIllnesses" value="kidneyDisease">
+            <label for="kidneyDisease">Kidney Disease</label>
+          </div>
+          
+          <div class="checkbox-item">
+            <input type="checkbox" id="otherIllness" name="pastIllnesses" value="other">
+            <label for="otherIllness">Other Illness</label>
+          </div>
+        </div>
+        
+        <div class="input-group conditional-field" id="bloodSugarField">
+          <i class="fas fa-tint"></i>
+          <input type="number" id="bloodSugar" placeholder="Blood Sugar Level (mg/dL)">
+        </div>
+        
+        <div class="input-group conditional-field" id="otherIllnessField">
+          <i class="fas fa-stethoscope"></i>
+          <input type="text" id="otherIllnessText" placeholder="Please specify other illness">
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h3>Caregiver Information (Optional)</h3>
+        
+        <div class="input-group">
+          <i class="fas fa-hands-helping"></i>
+          <input type="text" id="caregiverContact" placeholder="Caregiver's Email or Phone Number">
+        </div>
+      </div>
+      
+      <button type="submit">Complete Registration</button>
+    </form>
+    
+    <div class="login-link">
+      Already have an account? <a href="login.html">Sign In</a>
+    </div>
+    
+  </div>
+
+  <script>
+    // Create floating pink hearts in background
+    const heartsContainer = document.querySelector('.pink-hearts');
+    
+    for (let i = 0; i < 12; i++) {
+      const heart = document.createElement('i');
+      heart.className = 'pink-heart fas fa-heart';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.top = `${Math.random() * 100}%`;
+      heart.style.animationDelay = `${Math.random() * 5}s`;
+      heartsContainer.appendChild(heart);
+    }
+
+    // Show/hide conditional fields
+    document.getElementById('diabetes').addEventListener('change', function() {
+      document.getElementById('bloodSugarField').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('otherIllness').addEventListener('change', function() {
+      document.getElementById('otherIllnessField').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Form submission handler
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Basic validation
+      const password = document.getElementById('password').value;
+      if (password.length < 8) {
+        showNotification('Password must be at least 8 characters long', 'error');
+        return;
+      }
+      
+      // Simulate successful registration
+      showNotification('Registration successful! Welcome to PinkHope.', 'success');
+      
+      // In a real application, you would redirect to the dashboard
+      setTimeout(() => {
+        // window.location.href = 'dashboard.html';
+      }, 2000);
+    });
+
+    // Notification function
+    function showNotification(message, type) {
+      const notification = document.createElement('div');
+      notification.style.position = 'fixed';
+      notification.style.bottom = '20px';
+      notification.style.left = '50%';
+      notification.style.transform = 'translateX(-50%)';
+      notification.style.backgroundColor = type === 'success' ? '#4caf50' : '#e91e63';
+      notification.style.color = 'white';
+      notification.style.padding = '12px 24px';
+      notification.style.borderRadius = '50px';
+      notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+      notification.style.zIndex = '1000';
+      notification.style.fontWeight = '500';
+      notification.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+      
+      document.body.appendChild(notification);
+      
+      // Remove notification after 3 seconds
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 500);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

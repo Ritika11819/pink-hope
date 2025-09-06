@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinkHope - Side Effect Tracker for Cancer Patients</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 50%, #f8bbd0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ribbon-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .floating-ribbon {
+      position: absolute;
+      opacity: 0.7;
+      animation: float 20s infinite linear;
+      z-index: -1;
+    }
+
+    .ribbon-1 {
+      width: 120px;
+      height: 40px;
+      background: #e91e63;
+      top: 15%;
+      left: 10%;
+      transform: rotate(-30deg);
+      box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
+      animation-delay: 0s;
+      animation-duration: 25s;
+    }
+
+    .ribbon-2 {
+      width: 100px;
+      height: 35px;
+      background: #ec407a;
+      top: 30%;
+      right: 15%;
+      transform: rotate(20deg);
+      box-shadow: 0 0 15px rgba(236, 64, 122, 0.4);
+      animation-delay: 2s;
+      animation-duration: 20s;
+    }
+
+    .ribbon-3 {
+      width: 80px;
+      height: 30px;
+      background: #f06292;
+      bottom: 25%;
+      left: 20%;
+      transform: rotate(10deg);
+      box-shadow: 0 0 15px rgba(240, 98, 146, 0.4);
+      animation-delay: 4s;
+      animation-duration: 22s;
+    }
+
+    .ribbon-4 {
+      width: 90px;
+      height: 32px;
+      background: #f48fb1;
+      bottom: 40%;
+      right: 25%;
+      transform: rotate(-15deg);
+      box-shadow: 0 0 15px rgba(244, 143, 177, 0.4);
+      animation-delay: 1s;
+      animation-duration: 18s;
+    }
+
+    .ribbon-5 {
+      width: 70px;
+      height: 28px;
+      background: #f8bbd0;
+      top: 20%;
+      right: 30%;
+      transform: rotate(5deg);
+      box-shadow: 0 0 15px rgba(248, 187, 208, 0.4);
+      animation-delay: 3s;
+      animation-duration: 23s;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 450px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      border: 2px solid #f8bbd0;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    .pink-ribbon {
+      position: absolute;
+      top: -5px;
+      right: 30px;
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+    }
+
+    .pink-ribbon::before,
+    .pink-ribbon::after {
+      content: '';
+      position: absolute;
+      background: #e91e63;
+    }
+
+    .pink-ribbon::before {
+      width: 120%;
+      height: 20px;
+      top: 20px;
+      right: -10%;
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+    }
+
+    .pink-ribbon::after {
+      content: 'Hope';
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      top: 22px;
+      right: 18px;
+      z-index: 1;
+      transform: rotate(45deg);
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .logo i {
+      font-size: 42px;
+      color: #e91e63;
+      background: #fce4ec;
+      padding: 20px;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.2);
+    }
+
+    h1 {
+      color: #d81b60;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .app-name {
+      color: #e91e63;
+      font-weight: 800;
+      font-size: 32px;
+      margin-bottom: 5px;
+      background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: #880e4f;
+      margin-bottom: 35px;
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+
+    form {
+      text-align: left;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .input-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #f48fb1;
+      font-size: 18px;
+    }
+
+    form input {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: 2px solid #fce4ec;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s;
+      background: #fef9fb;
+    }
+
+    form input:focus {
+      border-color: #e91e63;
+      box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      color: #880e4f;
+    }
+
+    .remember input {
+      margin-right: 8px;
+      width: auto;
+    }
+
+    .forgot {
+      color: #e91e63;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .forgot:hover {
+      color: #ad1457;
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #d81b60 0%, #880e4f 100%);
+      box-shadow: 0 7px 18px rgba(233, 30, 99, 0.5);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .separator {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: #f48fb1;
+    }
+
+    .separator::before,
+    .separator::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #fce4ec;
+    }
+
+    .separator span {
+      padding: 0 15px;
+      font-size: 14px;
+    }
+
+    .signup {
+      color: #880e4f;
+      font-size: 15px;
+      margin-top: 20px;
+    }
+
+    .signup a {
+      color: #e91e63;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .signup a:hover {
+      color: #ad1457;
+      text-decoration: underline;
+    }
+
+    .support-text {
+      margin-top: 30px;
+      padding: 15px;
+      background: #fce4ec;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #880e4f;
+      line-height: 1.5;
+    }
+
+    .support-text a {
+      color: #e91e63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    .pink-hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .pink-heart {
+      position: absolute;
+      color: rgba(233, 30, 99, 0.2);
+      font-size: 24px;
+      animation: float 15s infinite linear;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+      
+      .app-name {
+        font-size: 28px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ribbon-bg">
+    <div class="floating-ribbon ribbon-1"></div>
+    <div class="floating-ribbon ribbon-2"></div>
+    <div class="floating-ribbon ribbon-3"></div>
+    <div class="floating-ribbon ribbon-4"></div>
+    <div class="floating-ribbon ribbon-5"></div>
+  </div>
+
+  <div class="pink-hearts">
+    <!-- Hearts will be added by JavaScript -->
+  </div>
+
+  <div class="container">
+    <div class="pink-ribbon"></div>
+    
+    <div class="logo">
+      <i class="fas fa-ribbon"></i>
+    </div>
+    
+    <h1>Welcome to <span class="app-name">PinkHope</span></h1>
+    <p class="subtitle">Track and manage treatment side effects with our supportive community</p>
+    
+    <form id="loginForm">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Username or Email" required>
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      
+      
+      <button type="submit">Sign In</button>
+    </form>
+    
+    <div class="separator">
+      <span>New here?</span>
+    </div>
+    
+    <p>Don’t have an account? <a href="register.html">Register here</a></p>
+    
+  </div>
+
+  <script>
+    // Create floating pink hearts in background
+    const heartsContainer = document.querySelector('.pink-hearts');
+    
+    for (let i = 0; i < 12; i++) {
+      const heart = document.createElement('i');
+      heart.className = 'pink-heart fas fa-heart';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.top = `${Math.random() * 100}%`;
+      heart.style.animationDelay = `${Math.random() * 5}s`;
+      heartsContainer.appendChild(heart);
+    }
+
+    // Form submission handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      
+      // Create a gentle notification instead of alert
+      const notification = document.createElement('div');
+      notification.style.position = 'fixed';
+      notification.style.bottom = '20px';
+      notification.style.left = '50%';
+      notification.style.transform = 'translateX(-50%)';
+      notification.style.backgroundColor = '#e91e63';
+      notification.style.color = 'white';
+      notification.style.padding = '12px 24px';
+      notification.style.borderRadius = '50px';
+      notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+      notification.style.zIndex = '1000';
+      notification.style.fontWeight = '500';
+      notification.innerHTML = `<i class="fas fa-heart"></i> Welcome back, ${username}! We're here to support you.`;
+      
+      document.body.appendChild(notification);
+      
+      // Remove notification after 3 seconds
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 500);
+      }, 3000);
+    });
+  </script>
+</body>
+
+</html>
