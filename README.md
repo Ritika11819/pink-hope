@@ -177,9 +177,6 @@ PostCSS + Autoprefixer – CSS optimization.
 7. Deployment & Environment
 
 Platform: Replit (frontend + backend + database).
-
 Integration:Automatic DB provisioning.
-            Replit Auth pre-configured.
-
 CI/CD: GitHub integration for version control.
 Scalability: Serverless PostgreSQL ensures elasticity.
