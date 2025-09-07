@@ -1,9 +1,9 @@
-🎗️ PinkHope: Cancer Patient Support Application
+🎗️ PinkHope: Cancer Patient Support Application 
 PinkHope is a comprehensive cancer support web application designed to help patients track symptoms, manage appointments, and access reliable guidance — making their treatment journey more manageable and empathetic.
 
 💡 Because every moment counts in cancer care.
 
-👥 Team Information
+👥 Team Information :-
 Team Name: DEVils
 College: Nirma University
 #
