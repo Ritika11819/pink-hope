@@ -9,13 +9,13 @@ College: Nirma University
 #
 Contributors
 
-👨‍💻 Krish Mojidra – Roll No: 24BCE188 | GitHub: Krish-3010
+👨‍💻 Krish Mojidra – GitHub: Krish-3010
 
-👨‍💻 Het Shah – Roll No: 24BCE261 | GitHub: Het6518
+👨‍💻 Het Shah –  GitHub: Het6518
 
-👩‍💻 Heer Patel – Roll No: 24BCE186 | GitHub: HeerPatel7232
+👩‍💻 Heer Patel –  GitHub: HeerPatel7232
 
-👩‍💻 Ritika Jiandani – Roll No: 24BCE196 | GitHub: Ritika11819
+👩‍💻 Ritika Jiandani –  GitHub: Ritika11819
 #
 🌟 Overview
 PinkHope empowers cancer patients to actively manage their health by offering:
